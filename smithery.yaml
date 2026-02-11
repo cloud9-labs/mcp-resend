@@ -1,0 +1,19 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - resendApiKey
+    properties:
+      resendApiKey:
+        type: string
+        title: "Resend API Key"
+        description: "Your Resend API key. Get it from https://resend.com/api-keys"
+  commandFunction: |
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.js'],
+      env: {
+        RESEND_API_KEY: config.resendApiKey
+      }
+    })
